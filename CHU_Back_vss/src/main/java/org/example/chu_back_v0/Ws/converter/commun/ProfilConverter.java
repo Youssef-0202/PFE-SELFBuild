@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 public class ProfilConverter {
     public Profil toBean(ProfilDto dto) {
         Profil bean = new Profil();
-        bean.setId(dto.getId());
         bean.setRef(dto.getRef());
         bean.setNom(dto.getNom());
         bean.setPrenom(dto.getPrenom());
@@ -26,7 +25,6 @@ public class ProfilConverter {
 
     public ProfilDto toDto(Profil bean) {
         MedecinDto dto = new MedecinDto();
-        dto.setId(bean.getId());
         dto.setRef(bean.getRef());
         dto.setNom(bean.getNom());
         dto.setPrenom(bean.getPrenom());

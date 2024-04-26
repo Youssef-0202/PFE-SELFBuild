@@ -14,18 +14,22 @@ public class InfermierConverter {
     @Autowired
     SexeConverter sexeConverter;
     public Infermier toBean(InfermierDto dto) {
-        Infermier bean = new Infermier();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setNom(dto.getNom());
-        bean.setPrenom(dto.getPrenom());
-        bean.setEmail(dto.getEmail());
-        bean.setTelephone(dto.getTelephone());
-        bean.setPhotoProfil(dto.getPhotoProfil());
-        bean.setDateNaissance(dto.getDateNaissance());
-        bean.setUserName(dto.getUserName());
-        bean.setSexe(sexeConverter.toBean(dto.getSexeDto()));
-        return bean;
+        if(dto != null){
+            Infermier bean = new Infermier();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setNom(dto.getNom());
+            bean.setPrenom(dto.getPrenom());
+            bean.setEmail(dto.getEmail());
+            bean.setTelephone(dto.getTelephone());
+            bean.setPhotoProfil(dto.getPhotoProfil());
+            bean.setDateNaissance(dto.getDateNaissance());
+            bean.setUserName(dto.getUserName());
+            bean.setSexe(sexeConverter.toBean(dto.getSexeDto()));
+            return bean;
+        }else {
+            return null;
+        }
     }
 
     public InfermierDto toDto(Infermier bean) {

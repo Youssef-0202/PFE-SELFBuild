@@ -15,15 +15,17 @@ public class DiagnosticConverter {
     @Autowired
     ConsultationConverter consultationConverter;
     public Diagnostic toBean(DiagnosticDto dto) {
-        Diagnostic bean = new Diagnostic();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setDiagnostic(dto.getDiagnostic());
-        bean.setDateDiagnostic(dto.getDateDiagnostic());
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-
-
-        return bean;
+     if(dto != null){
+         Diagnostic bean = new Diagnostic();
+         bean.setId(dto.getId());
+         bean.setRef(dto.getRef());
+         bean.setDiagnostic(dto.getDiagnostic());
+         bean.setDateDiagnostic(dto.getDateDiagnostic());
+         bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+         return bean;
+     }else {
+         return null;
+     }
     }
 
     public DiagnosticDto toDto(Diagnostic bean) {

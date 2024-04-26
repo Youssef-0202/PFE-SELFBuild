@@ -15,16 +15,19 @@ public class AntecedentConverter {
     @Autowired
     GroupeSanguinConverter groupeSanguinConverter;
     public Antecedent toBean(AntecedentDto dto) {
-        Antecedent bean = new Antecedent();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setAlimentation(dto.getAlimentation());
-        bean.setAllergie(dto.getAllergie());
-        bean.setEtatPsy(dto.getEtatPsy());
-        bean.setMouvement(dto.getMouvement());
-        bean.setRespiration(dto.getRespiration());
-        bean.setGroupeSanguin(groupeSanguinConverter.toBean(dto.getGroupeSanguinDto()));
-        return bean;
+      if(dto != null){
+          Antecedent bean = new Antecedent();
+          bean.setId(dto.getId());
+          bean.setRef(dto.getRef());
+          bean.setAlimentation(dto.getAlimentation());
+          bean.setAllergie(dto.getAllergie());
+          bean.setEtatPsy(dto.getEtatPsy());
+          bean.setMouvement(dto.getMouvement());
+          bean.setSommeil(dto.getSommeil());
+          bean.setRespiration(dto.getRespiration());
+          bean.setGroupeSanguin(groupeSanguinConverter.toBean(dto.getGroupeSanguinDto()));
+          return bean;
+      }else return null;
     }
 
     public AntecedentDto toDto(Antecedent bean) {
@@ -34,6 +37,7 @@ public class AntecedentConverter {
         dto.setAlimentation(bean.getAlimentation());
         dto.setAllergie(bean.getAllergie());
         dto.setEtatPsy(bean.getEtatPsy());
+        dto.setSommeil(bean.getSommeil());
         dto.setMouvement(bean.getMouvement());
         dto.setRespiration(bean.getRespiration());
         dto.setGroupeSanguinDto(groupeSanguinConverter.toDto(bean.getGroupeSanguin()));

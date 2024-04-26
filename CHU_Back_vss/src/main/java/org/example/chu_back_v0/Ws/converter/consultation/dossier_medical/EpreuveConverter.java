@@ -11,12 +11,14 @@ import java.util.stream.Collectors;
 @Component
 public class EpreuveConverter {
     public Epreuve toBean(EpreuveDto dto) {
-        Epreuve bean = new Epreuve();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setLibelle(dto.getLibelle());
+        if(dto != null){
+            Epreuve bean = new Epreuve();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setLibelle(dto.getLibelle());
 
-        return bean;
+            return bean;
+        }return null;
     }
 
     public EpreuveDto toDto(Epreuve bean) {

@@ -6,23 +6,25 @@ import org.example.chu_back_v0.bean.patient.Patient;
 import org.example.chu_back_v0.service.facade.patient.PatientService;
 import org.example.chu_back_v0.service.impl.patient.PatientServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/patient/")
+@PreAuthorize("hasRole('Admin')")
 public class PatientWs {
     @Autowired
     private PatientService patientService;
 
     @Autowired
     PatientConverter patientConverter;
+
     @GetMapping("numDossier/{numDossier}")
-    public PatientDto findByNumDossier(@PathVariable String numDossier) {
-        Patient patient = patientService.findByNumDossier(numDossier);
-        PatientDto patientDto = patientConverter.toDto(patient);
-        return patientDto;
+    public Patient findByNumDossier(@PathVariable String numDossier) {
+
+        return patientService.findByNumDossier(numDossier);
     }
 
     @DeleteMapping("numDossier/{numDossier}")

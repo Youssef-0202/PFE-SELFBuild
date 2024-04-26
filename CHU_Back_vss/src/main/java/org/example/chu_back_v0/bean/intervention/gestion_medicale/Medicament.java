@@ -13,7 +13,6 @@ public class Medicament {
     private String dure;
     private String consigne;
 
-
     public String getRef() {
         return ref;
     }
@@ -21,7 +20,6 @@ public class Medicament {
     public void setRef(String ref) {
         this.ref = ref;
     }
-
     public String getSoinProduit() {
         return soinProduit;
     }

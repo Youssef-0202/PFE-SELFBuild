@@ -16,4 +16,6 @@ public interface SexeService {
     int save(Sexe sexe);
 
     void deleteAll();
+
+    void initSexe();
 }

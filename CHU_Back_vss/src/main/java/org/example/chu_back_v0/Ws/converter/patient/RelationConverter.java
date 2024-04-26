@@ -12,15 +12,17 @@ import java.util.stream.Collectors;
 public class RelationConverter
 {
     public Relation toBean(RelationDto dto) {
-        Relation bean = new Relation();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setLibelle(dto.getLibelle());
-        return bean;
+        if (dto!=null){
+            Relation bean = new Relation();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setLibelle(dto.getLibelle());
+            return bean;
+        }else
+            return null;
     }
     public RelationDto toDto(Relation bean) {
         RelationDto dto = new RelationDto();
-        dto.setId(bean.getId());
         dto.setRef(bean.getRef());
         dto.setLibelle(bean.getLibelle());
 

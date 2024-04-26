@@ -6,6 +6,7 @@ import org.example.chu_back_v0.bean.commun.Infermier;
 import org.example.chu_back_v0.service.facade.commun.InfermierService;
 import org.example.chu_back_v0.service.impl.commun.InfermierServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/infermier/")
+@PreAuthorize("hasRole('Admin')")
 public class InfermierWs {
 
     @Autowired

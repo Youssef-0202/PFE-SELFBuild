@@ -35,16 +35,20 @@ public class MedecinServiceimpl implements MedecinService {
 
     @Override
     public int save(Medecin medecin) {
-        if (medecin.getRef() != null) {
+        if(medecin.getRef() == "" || medecin.getRef() == null ){
+            return 0 ;
+        }
+        Medecin med = medecinDao.findByRef(medecin.getRef());
+        if (med == null) {
             if (medecin.getSexe() != null && medecin.getSexe().getRef() != null) {
-                if (medecin.getSexe().getRef().equals("0") || medecin.getSexe().getRef().equals("1")) {
+                if (medecin.getSexe().getRef().equals("h") || medecin.getSexe().getRef().equals("f")) {
                     String code = medecin.getSexe().getRef();
                     Sexe sexe = sexeService.findByRef(code);
                     medecin.setSexe(sexe);
                     medecinDao.save(medecin);
                     return 1;
                 } else {
-                    System.out.println(" 0 ou 1 !! ");
+                    System.out.println(" h ou f !! ");
                     return -2;
                 }
             } else {
@@ -53,8 +57,10 @@ public class MedecinServiceimpl implements MedecinService {
                 return -3;
             }
 
+        }else {
+            return -1;
         }
-        return -1;
+
 
     }
 }

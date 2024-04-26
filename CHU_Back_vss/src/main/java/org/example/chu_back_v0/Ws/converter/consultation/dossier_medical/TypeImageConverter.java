@@ -11,12 +11,13 @@ import java.util.stream.Collectors;
 @Component
 public class TypeImageConverter {
     public TypeImage toBean(TypeImageDto dto) {
-        TypeImage bean = new TypeImage();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setLibelle(dto.getLibelle());
-
-        return bean;
+        if(dto != null){
+            TypeImage bean = new TypeImage();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setLibelle(dto.getLibelle());
+            return bean;
+        }else return null;
     }
 
     public TypeImageDto toDto(TypeImage bean) {

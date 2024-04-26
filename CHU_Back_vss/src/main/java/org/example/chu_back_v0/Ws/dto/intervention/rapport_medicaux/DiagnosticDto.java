@@ -5,11 +5,12 @@ import org.example.chu_back_v0.Ws.dto.intervention.consultation_medicale.Consult
 import org.example.chu_back_v0.bean.intervention.consultation_medicale.Consultation;
 
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
 public class DiagnosticDto {
     private Long id;
     private String ref;
-    private String dateDiagnostic;
+    private Date dateDiagnostic;
     private String diagnostic;
 
     private ConsultationDto consultationDto;
@@ -30,11 +31,11 @@ public class DiagnosticDto {
         this.ref = ref;
     }
 
-    public String getDateDiagnostic() {
+    public Date getDateDiagnostic() {
         return dateDiagnostic;
     }
 
-    public void setDateDiagnostic(String dateDiagnostic) {
+    public void setDateDiagnostic(Date dateDiagnostic) {
         this.dateDiagnostic = dateDiagnostic;
     }
 

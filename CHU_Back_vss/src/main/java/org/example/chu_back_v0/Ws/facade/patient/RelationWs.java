@@ -6,17 +6,26 @@ import org.example.chu_back_v0.bean.patient.Relation;
 import org.example.chu_back_v0.service.facade.patient.RelationService;
 import org.example.chu_back_v0.service.impl.patient.RelationServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/relation/")
+@PreAuthorize("hasRole('Admin')")
 public class RelationWs {
     @Autowired
     private RelationService relationService;
     @Autowired
     RelationConverter relationConverter;
+
+    @PostConstruct
+    public void initRelation() {
+        relationService.initRelation();
+    }
+
 
     @GetMapping("ref/{ref}")
     public RelationDto findByRef(@PathVariable String ref) {

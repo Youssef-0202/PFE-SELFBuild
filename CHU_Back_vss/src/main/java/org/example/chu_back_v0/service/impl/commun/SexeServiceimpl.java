@@ -1,6 +1,7 @@
 package org.example.chu_back_v0.service.impl.commun;
 
 import org.example.chu_back_v0.bean.commun.Sexe;
+import org.example.chu_back_v0.bean.security.Role;
 import org.example.chu_back_v0.dao.commun.SexeDao;
 import org.example.chu_back_v0.service.facade.commun.SexeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class SexeServiceimpl implements SexeService {
 
     @Override
     public int save(Sexe sexe) {
+        if(sexe.getRef() == "" || sexe.getRef() == null ){
+            return 0 ;
+        }
         sexeDao.save(sexe);
         return 1;
     }
@@ -39,5 +43,20 @@ public class SexeServiceimpl implements SexeService {
     @Transactional
     public void deleteAll() {
         sexeDao.deleteAll();
+    }
+
+    @Override
+    public void initSexe() {
+        Sexe homme = new Sexe();
+        homme.setId(1L);
+        homme.setRef("h");
+        homme.setLibelle("Homme");
+        sexeDao.save(homme);
+
+        Sexe femme = new Sexe();
+        femme.setId(2L);
+        femme.setRef("f");
+        femme.setLibelle("femme");
+        sexeDao.save(femme);
     }
 }

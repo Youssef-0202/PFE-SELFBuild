@@ -36,14 +36,54 @@ public class PatientContactServiceimpl implements PatientContactService {
 
     @Override
     public int save(PatientContact patientContact) {
-        if (patientContact.getRelation() != null && patientContact.getRelation().getRef() != null) {
-            String code = patientContact.getRelation().getRef();
-            Relation relation = relationService.findByRef(code);
-            patientContact.setRelation(relation);
-        } else {
-            patientContact.setRelation(null);
+        if(patientContact.getCin() == "" || patientContact.getCin() == null ){
+            return 0 ;
         }
-        pationContactDao.save(patientContact);
-        return 1;
+        PatientContact pat_con = pationContactDao.findByCin(patientContact.getCin());
+        if (pat_con == null) {
+            if (patientContact.getRelation() != null && patientContact.getRelation().getRef() != null) {
+                if (patientContact.getRelation().getRef().equals("father") || patientContact.getRelation().getRef().equals("mother")) {
+                    String code = patientContact.getRelation().getRef();
+                    Relation relation = relationService.findByRef(code);
+                    patientContact.setRelation(relation);
+                    pationContactDao.save(patientContact);
+                    return 1;
+                }else {
+                    System.out.println(" father ou mother !! ");
+                    return -2;
+                }
+            }else {
+                patientContact.setRelation(null);
+                pationContactDao.save(patientContact);
+                return -3;
+            }
+            }
+        else
+            return -1;
     }
+
+
 }
+
+/*
+@Override
+    public int save(PatientContact patientContact) {
+        PatientContact pat_con = pationContactDao.findByCin(patientContact.getCin());
+        if (pat_con == null) {
+            if (patientContact.getRelation() != null && patientContact.getRelation().getRef() != null) {
+                if (patientContact.getRelation().getRef().equals("father") || patientContact.getRelation().getRef().equals("mother")) {
+                    String code = patientContact.getRelation().getRef();
+                    Relation relation = relationService.findByRef(code);
+                    patientContact.setRelation(relation);
+                    pationContactDao.save(patientContact);
+                    return 1;
+                } else {
+                    patientContact.setRelation(null);
+                    pationContactDao.save(patientContact);
+                    return -2;
+                }
+            }
+        }else {
+
+        }
+    }*/

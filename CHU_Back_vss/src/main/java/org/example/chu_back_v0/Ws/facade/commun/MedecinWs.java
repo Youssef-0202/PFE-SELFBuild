@@ -8,6 +8,7 @@ import org.example.chu_back_v0.bean.commun.Medecin;
 import org.example.chu_back_v0.service.facade.commun.MedecinService;
 import org.example.chu_back_v0.service.impl.commun.MedecinServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/medecin/")
+@PreAuthorize("hasRole('Admin')")
 public class MedecinWs {
     @Autowired
     private MedecinConverter medecinConverter;

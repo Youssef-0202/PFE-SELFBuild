@@ -18,16 +18,21 @@ public class PatientConverter {
     @Autowired
    PatientContactConverter patientContactConverter;
     public Patient toBean(PatientDto dto) {
-        Patient bean = new Patient();
-        bean.setId(dto.getId());
-        bean.setNom(dto.getNom());
-        bean.setNumDossier(dto.getNumDossier());
-        bean.setPrenom(dto.getPrenom());
-        bean.setPhotoProfil(dto.getPhotoProfil());
-        bean.setVille(dto.getVille());
-        bean.setSexe(sexeConverter.toBean(dto.getSexeDto()));
-        bean.setPassionContact(patientContactConverter.toBean(dto.getPassionContactDto()));
-        return bean;
+       if(dto != null){
+           Patient bean = new Patient();
+           bean.setId(dto.getId());
+           bean.setNom(dto.getNom());
+           bean.setNumDossier(dto.getNumDossier());
+           bean.setPrenom(dto.getPrenom());
+           bean.setPhotoProfil(dto.getPhotoProfil());
+           bean.setVille(dto.getVille());
+           bean.setDateNaissance(dto.getDateNaissance());
+           bean.setSexe(sexeConverter.toBean(dto.getSexeDto()));
+           bean.setPassionContact(patientContactConverter.toBean(dto.getPassionContactDto()));
+           return bean;
+       } else {
+           return null;
+       }
     }
 
     public PatientDto toDto(Patient bean) {
@@ -38,6 +43,7 @@ public class PatientConverter {
         dto.setNumDossier(bean.getNumDossier());
         dto.setVille(bean.getVille());
         dto.setPhotoProfil(bean.getPhotoProfil());
+        dto.setDateNaissance(bean.getDateNaissance());
         dto.setSexeDto(sexeConverter.toDto(bean.getSexe()));
         dto.setPassionContactDto(patientContactConverter.toDto(bean.getPassionContact()));
         return dto;

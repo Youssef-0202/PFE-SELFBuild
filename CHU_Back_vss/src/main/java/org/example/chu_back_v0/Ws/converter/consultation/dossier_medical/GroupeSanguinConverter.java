@@ -11,11 +11,13 @@ import java.util.stream.Collectors;
 @Component
 public class GroupeSanguinConverter {
     public GroupeSanguin toBean(GroupeSanguinDto dto) {
-        GroupeSanguin bean = new GroupeSanguin();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setLibelle(dto.getLibelle());
-        return bean;
+      if(dto != null){
+          GroupeSanguin bean = new GroupeSanguin();
+          bean.setId(dto.getId());
+          bean.setRef(dto.getRef());
+          bean.setLibelle(dto.getLibelle());
+          return bean;
+      }else return null;
     }
 
     public GroupeSanguinDto toDto(GroupeSanguin bean) {

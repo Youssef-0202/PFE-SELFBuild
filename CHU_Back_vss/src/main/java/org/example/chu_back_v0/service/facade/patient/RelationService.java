@@ -16,4 +16,6 @@ public abstract interface RelationService {
     Relation findByLibelle(String libelle);
 
     public abstract int save(Relation relation);
+
+    void initRelation();
 }
