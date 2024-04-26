@@ -19,16 +19,18 @@ public class AnalyseMedicaleConverter {
     @Autowired
     EpreuveConverter epreuveConverter;
     public AnalyseMedicale toBean(AnalyseMedicaleDto dto) {
-        AnalyseMedicale bean = new AnalyseMedicale();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setDateAnalyse(dto.getDateAnalyse());
-        bean.setValeur(dto.getValeur());
-        bean.setValeurRang(dto.getValeurRang());
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-        bean.setEpreuve(epreuveConverter.toBean(dto.getEpreuveDto()));
+        if(dto!= null){
+            AnalyseMedicale bean = new AnalyseMedicale();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setDateAnalyse(dto.getDateAnalyse());
+            bean.setValeur(dto.getValeur());
+            bean.setValeurRang(dto.getValeurRang());
+            bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+            bean.setEpreuve(epreuveConverter.toBean(dto.getEpreuveDto()));
 
-        return bean;
+            return bean;
+        }else return null;
     }
 
     public AnalyseMedicaleDto toDto(AnalyseMedicale bean) {

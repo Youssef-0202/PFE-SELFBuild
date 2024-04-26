@@ -15,15 +15,19 @@ public class CertificatConverter {
     ConsultationConverter consultationConverter;
 
     public Certificat toBean(CertificatDto dto) {
-        Certificat bean = new Certificat();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setDateDebut(dto.getDateDebut());
-        bean.setDescription(dto.getDescription());
-        bean.setNbrJour(dto.getNbrJour());
-        bean.setDateFin(dto.getDateDebut());
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-        return bean;
+        if(dto!=null){
+            Certificat bean = new Certificat();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setDateDebut(dto.getDateDebut());
+            bean.setDescription(dto.getDescription());
+            bean.setNbrJour(dto.getNbrJour());
+            bean.setDateFin(dto.getDateDebut());
+            bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+            return bean;
+        }else {
+            return null;
+        }
     }
 
     public CertificatDto toDto(Certificat bean) {

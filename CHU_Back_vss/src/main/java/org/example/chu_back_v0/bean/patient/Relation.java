@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Entity
 public class Relation {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ref;
     private String libelle;

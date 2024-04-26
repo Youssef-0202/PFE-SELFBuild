@@ -23,17 +23,21 @@ public class ConsultationConverter {
 
 
     public Consultation toBean(ConsultationDto dto) {
-        Consultation bean = new Consultation();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setDateConsultation(dto.getDateConsultation());
-        bean.setHeureConsultation(dto.getHeureConsultation());
-        bean.setTypeConsultation(dto.getTypeConsultation());
-        bean.setAvisMedicale(dto.getAvisMedicale());
-        bean.setMedcin(medecinConverter.toBean(dto.getMedecinDto()));
-        bean.setPatient(patientConverter.toBean(dto.getPatientDto()));
-        bean.setInfermier(infermierConverter.toBean(dto.getInfermierDto()));
-        return bean;
+        if (dto!=null){
+            Consultation bean = new Consultation();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setDateConsultation(dto.getDateConsultation());
+            bean.setHeureConsultation(dto.getHeureConsultation());
+            bean.setTypeConsultation(dto.getTypeConsultation());
+            bean.setAvisMedicale(dto.getAvisMedicale());
+            bean.setMedcin(medecinConverter.toBean(dto.getMedecinDto()));
+            bean.setPatient(patientConverter.toBean(dto.getPatientDto()));
+            bean.setInfermier(infermierConverter.toBean(dto.getInfermierDto()));
+            return bean;
+        }else {
+            return null;
+        }
     }
 
     public ConsultationDto toDto(Consultation bean) {

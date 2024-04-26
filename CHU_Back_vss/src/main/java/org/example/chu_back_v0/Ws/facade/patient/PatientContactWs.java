@@ -6,12 +6,14 @@ import org.example.chu_back_v0.bean.patient.PatientContact;
 import org.example.chu_back_v0.service.facade.patient.PatientContactService;
 import org.example.chu_back_v0.service.impl.patient.PatientContactServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/patientContact/")
+@PreAuthorize("hasRole('Admin')")
 public class PatientContactWs {
     @Autowired
     private PatientContactService patientContactService;

@@ -16,15 +16,16 @@ public class SyntheseMedicaleConverter {
     @Autowired
     ConsultationConverter consultationConverter;
     public SyntheseMedicale toBean(syntheseMedicaleDto dto) {
-        SyntheseMedicale bean = new SyntheseMedicale();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setDateSyntheseMedicale(dto.getDateSyntheseMedicale());
-        bean.setSyntheseMedicale(dto.getSyntheseMedicale());
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-
-
-        return bean;
+        if (dto!= null){
+            SyntheseMedicale bean = new SyntheseMedicale();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setDateSyntheseMedicale(dto.getDateSyntheseMedicale());
+            bean.setSyntheseMedicale(dto.getSyntheseMedicale());
+            bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+            return bean;
+        }
+        return null;
     }
 
     public syntheseMedicaleDto toDto(SyntheseMedicale bean) {

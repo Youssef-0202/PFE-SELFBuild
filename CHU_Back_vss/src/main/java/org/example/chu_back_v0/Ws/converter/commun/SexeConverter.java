@@ -11,11 +11,16 @@ import java.util.stream.Collectors;
 public class SexeConverter {
 
     public Sexe toBean(SexeDto dto) {
-        Sexe bean = new Sexe();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setLibelle(dto.getLibelle());
-        return bean;
+        if(dto != null){
+            Sexe bean = new Sexe();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setLibelle(dto.getLibelle());
+            return bean;
+        }
+        else {
+            return null;
+        }
     }
     public SexeDto toDto(Sexe bean) {
         SexeDto dto = new SexeDto();

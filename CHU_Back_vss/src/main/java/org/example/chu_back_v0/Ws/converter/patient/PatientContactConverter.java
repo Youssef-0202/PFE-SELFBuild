@@ -13,18 +13,18 @@ public class PatientContactConverter {
     @Autowired
    RelationConverter relationConverter;
     public PatientContact toBean(PatientContactDto dto) {
-        PatientContact bean = new PatientContact();
-        bean.setId(dto.getId());
-        bean.setAdresse(dto.getAdresse());
-        bean.setCin(dto.getCin());
-        bean.setEmail(dto.getEmail());
-        bean.setNom(dto.getNom());
-        bean.setPrenom(dto.getPrenom());
-        bean.setTelephone(dto.getTelephone());
-        bean.setRelation(relationConverter.toBean(dto.getRelationDto()));
-
-
-        return bean;
+        if (dto != null) {
+            PatientContact bean = new PatientContact();
+            bean.setId(dto.getId());
+            bean.setAdresse(dto.getAdresse());
+            bean.setCin(dto.getCin());
+            bean.setEmail(dto.getEmail());
+            bean.setNom(dto.getNom());
+            bean.setPrenom(dto.getPrenom());
+            bean.setTelephone(dto.getTelephone());
+            bean.setRelation(relationConverter.toBean(dto.getRelationDto()));
+            return bean;
+        }else return null;
     }
 
     public PatientContactDto toDto(PatientContact bean) {

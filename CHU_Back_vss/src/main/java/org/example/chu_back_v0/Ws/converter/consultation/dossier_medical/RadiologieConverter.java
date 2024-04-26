@@ -16,15 +16,17 @@ public class RadiologieConverter {
     @Autowired
     TypeImageConverter typeImageConverter;
     public Radiologie toBean(RadiologieDto dto) {
-        Radiologie bean = new Radiologie();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setDateRadiologie(dto.getDateRadiologie());
-        bean.setCommentaire(dto.getCommentaire());
-        bean.setImageScann(dto.getImageScann());
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-        bean.setTypeImage(typeImageConverter.toBean(dto.getTypeImageDto()));
-        return bean;
+       if (dto != null){
+           Radiologie bean = new Radiologie();
+           bean.setId(dto.getId());
+           bean.setRef(dto.getRef());
+           bean.setDateRadiologie(dto.getDateRadiologie());
+           bean.setCommentaire(dto.getCommentaire());
+           bean.setImageScann(dto.getImageScann());
+           bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+           bean.setTypeImage(typeImageConverter.toBean(dto.getTypeImageDto()));
+           return bean;
+       }else return null;
     }
 
     public RadiologieDto toDto(Radiologie bean) {

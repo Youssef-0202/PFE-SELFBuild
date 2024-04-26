@@ -35,16 +35,21 @@ public class InfermierServiceimpl implements InfermierService {
 
     @Override
     public int save(Infermier infermier) {
-        if (infermier.getRef() != null) {
+        if(infermier.getRef() == "" || infermier.getRef() == null ){
+            return 0 ;
+        }
+
+        Infermier inf = infermierDao.findByRef(infermier.getRef());
+        if (inf == null) {
             if (infermier.getSexe() != null && infermier.getSexe().getRef() != null) {
-                if (infermier.getSexe().getRef().equals("0") || infermier.getSexe().getRef().equals("1")) {
+                if (infermier.getSexe().getRef().equals("h") || infermier.getSexe().getRef().equals("f")) {
                     String code = infermier.getSexe().getRef();
                     Sexe sexe = sexeService.findByRef(code);
                     infermier.setSexe(sexe);
                     infermierDao.save(infermier);
                     return 1;
                 } else {
-                    System.out.println(" 0 ou 1 !! ");
+                    System.out.println(" f ou h  !! ");
                     return -2;
                 }
             } else {
@@ -52,10 +57,10 @@ public class InfermierServiceimpl implements InfermierService {
                 infermierDao.save(infermier);
                 return -3;
             }
-
-
+        }else {
+            return -1;
         }
-        return -1;
+
 
     }
 }

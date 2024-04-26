@@ -6,18 +6,26 @@ import org.example.chu_back_v0.bean.commun.Medecin;
 import org.example.chu_back_v0.bean.commun.Sexe;
 import org.example.chu_back_v0.service.facade.commun.SexeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @RestController
+@PreAuthorize("hasRole('Admin')")
 @RequestMapping("/api/sexe/")
 public class SexeWs {
     @Autowired
     private SexeService sexeService;
 @Autowired
     private SexeConverter sexeConverter;
+
+    @PostConstruct
+    public void initSexe() {
+        sexeService.initSexe();
+    }
 
     @GetMapping("code/{ref}")
     public SexeDto findByRef(@PathVariable String ref) {

@@ -17,16 +17,19 @@ public class FichePatientConverter {
     @Autowired
     ConsultationConverter consultationConverter;
     public FichePatient toBean(FichePatientDto dto) {
-        FichePatient bean = new FichePatient();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setConclusionFichePatient(dto.getConclusionFichePatient());
-        bean.setExamenFichePatient(dto.getExamenFichePatient());
-        bean.setAntecedentFamilial(dto.getAntecedentFamilial());
-        bean.setHistoireMaladie(dto.getHistoireMaladie());
-        bean.setAntecedent(AntecedentConverter.toBean(dto.getAntecedentDto()));
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-        return bean;
+        if(dto!= null){
+            FichePatient bean = new FichePatient();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setConclusionFichePatient(dto.getConclusionFichePatient());
+            bean.setExamenFichePatient(dto.getExamenFichePatient());
+            bean.setAntecedentFamilial(dto.getAntecedentFamilial());
+            bean.setHistoireMaladie(dto.getHistoireMaladie());
+            bean.setDateFichePatient(dto.getDateFichePatient());
+            bean.setAntecedent(AntecedentConverter.toBean(dto.getAntecedentDto()));
+            bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+            return bean;
+        }return null;
     }
 
     public FichePatientDto toDto(FichePatient bean) {
@@ -40,7 +43,6 @@ public class FichePatientConverter {
         dto.setAntecedentFamilial(bean.getAntecedentFamilial());
         dto.setHistoireMaladie(bean.getHistoireMaladie());
         dto.setConsultationDto(consultationConverter.toDto(bean.getConsultation()));
-        dto.setAntecedentDto(AntecedentConverter.toDto(bean.getAntecedent()));
         return dto;
     }
 

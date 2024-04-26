@@ -19,13 +19,15 @@ public class TraitementConverter {
     MedicamentConverter medicamentConverter;
 
     public Traitement toBean(TraitementDto dto) {
-        Traitement bean = new Traitement();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setImageOrdonnance(dto.getImageOrdonnance());
-        bean.setMedicaments(medicamentConverter.toBean(dto.getMedicamentDtos()));
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-        return bean;
+        if(dto != null){
+            Traitement bean = new Traitement();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setImageOrdonnance(dto.getImageOrdonnance());
+            bean.setMedicaments(medicamentConverter.toBean(dto.getMedicamentDtos()));
+            bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+            return bean;
+        }else return null;
     }
 
     public TraitementDto toDto(Traitement bean) {

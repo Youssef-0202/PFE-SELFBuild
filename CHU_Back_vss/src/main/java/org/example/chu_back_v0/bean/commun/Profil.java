@@ -1,13 +1,14 @@
 package org.example.chu_back_v0.bean.commun;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "profil_type")
 public class Profil {
 
-    @Id
+    @Id  @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String ref;
     private String userName;

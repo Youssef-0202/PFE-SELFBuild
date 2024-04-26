@@ -7,7 +7,8 @@ import org.example.chu_back_v0.bean.patient.PatientContact;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
-public class PatientDto { private Long id;
+public class PatientDto {
+    private Long id;
     private String numDossier;
     private String nom;
     private String prenom;

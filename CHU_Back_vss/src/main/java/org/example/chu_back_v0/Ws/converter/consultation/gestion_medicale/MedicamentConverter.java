@@ -15,13 +15,17 @@ public class MedicamentConverter {
     @Autowired
     InfermierConverter infermierConverter;
     public Medicament toBean(MedicamentDto dto) {
-        Medicament bean = new Medicament();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setConsigne(dto.getConsigne());
-        bean.setDure(dto.getDure());
-        bean.setSoinProduit(dto.getSoinProduit());
-        return bean;
+        if (dto!=null){
+            Medicament bean = new Medicament();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setConsigne(dto.getConsigne());
+            bean.setDure(dto.getDure());
+            bean.setSoinProduit(dto.getSoinProduit());
+            return bean;
+        }else {
+            return null;
+        }
     }
 
     public MedicamentDto toDto(Medicament bean) {
@@ -35,7 +39,11 @@ public class MedicamentConverter {
     }
 
     public List<Medicament> toBean(List<MedicamentDto> dtos) {
-        return dtos.stream().map(e -> toBean(e)).collect(Collectors.toList());
+       if(dtos != null){
+           return dtos.stream().map(e -> toBean(e)).collect(Collectors.toList());
+       }else {
+           return null;
+       }
 
     }
 

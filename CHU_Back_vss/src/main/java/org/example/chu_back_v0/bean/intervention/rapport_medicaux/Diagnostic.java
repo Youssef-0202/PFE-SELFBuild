@@ -4,6 +4,7 @@ package org.example.chu_back_v0.bean.intervention.rapport_medicaux;
 import org.example.chu_back_v0.bean.intervention.consultation_medicale.Consultation;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Diagnostic {
@@ -11,10 +12,21 @@ public class Diagnostic {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String ref;
-    private String dateDiagnostic;
+    private Date dateDiagnostic;
     private String diagnostic;
+
     @ManyToOne
     private Consultation consultation;
+
+    public Date getDateDiagnostic() {
+        return dateDiagnostic;
+    }
+
+    public void setDateDiagnostic(Date dateDiagnostic) {
+        this.dateDiagnostic = dateDiagnostic;
+    }
+
+
 
     public Consultation getConsultation() {
         return consultation;
@@ -46,14 +58,6 @@ public class Diagnostic {
 
     public void setRef(String ref) {
         this.ref = ref;
-    }
-
-    public String getDateDiagnostic() {
-        return dateDiagnostic;
-    }
-
-    public void setDateDiagnostic(String dateDiagnostic) {
-        this.dateDiagnostic = dateDiagnostic;
     }
 
     public void setId(Long id) {

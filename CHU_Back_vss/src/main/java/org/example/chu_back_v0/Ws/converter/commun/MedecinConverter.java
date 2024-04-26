@@ -13,19 +13,24 @@ public class MedecinConverter {
     @Autowired
     SexeConverter sexeConverter;
     public Medecin toBean(MedecinDto dto) {
-        Medecin bean = new Medecin();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setNom(dto.getNom());
-        bean.setPrenom(dto.getPrenom());
-        bean.setTelephone(dto.getTelephone());
-        bean.setSpecialite(dto.getSpecialite());
-        bean.setPhotoProfil(dto.getPhotoProfil());
-        bean.setUserName(dto.getUserName());
-        bean.setDateNaissance(dto.getDateNaissance());
-        bean.setEmail(dto.getEmail());
-        bean.setSexe(sexeConverter.toBean(dto.getSexeDto()));
-        return bean;
+        if(dto != null){
+            Medecin bean = new Medecin();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setNom(dto.getNom());
+            bean.setPrenom(dto.getPrenom());
+            bean.setTelephone(dto.getTelephone());
+            bean.setSpecialite(dto.getSpecialite());
+            bean.setPhotoProfil(dto.getPhotoProfil());
+            bean.setUserName(dto.getUserName());
+            bean.setDateNaissance(dto.getDateNaissance());
+            bean.setEmail(dto.getEmail());
+            bean.setSexe(sexeConverter.toBean(dto.getSexeDto()));
+            return bean;
+        }else {
+            return null;
+        }
+
     }
 
     public MedecinDto toDto(Medecin bean) {

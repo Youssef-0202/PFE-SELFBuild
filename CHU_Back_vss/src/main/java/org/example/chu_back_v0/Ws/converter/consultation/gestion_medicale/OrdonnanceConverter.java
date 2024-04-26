@@ -16,15 +16,17 @@ public class OrdonnanceConverter {
     @Autowired
     ConsultationConverter consultationConverter;
     public Ordonnance toBean(OrdonnanceDto dto) {
-        Ordonnance bean = new Ordonnance();
-        bean.setId(dto.getId());
-        bean.setRef(dto.getRef());
-        bean.setHospitaleName(dto.getHospitaleName());
-        bean.setHospitalAdresse(dto.getHospitalAdresse());
-        bean.setDateOrdonnance(dto.getDateOrdonnance());
-        bean.setSignature(dto.getSignature());
-        bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
-        return bean;
+        if(dto!=null){
+            Ordonnance bean = new Ordonnance();
+            bean.setId(dto.getId());
+            bean.setRef(dto.getRef());
+            bean.setHospitaleName(dto.getHospitaleName());
+            bean.setHospitalAdresse(dto.getHospitalAdresse());
+            bean.setDateOrdonnance(dto.getDateOrdonnance());
+            bean.setSignature(dto.getSignature());
+            bean.setConsultation(consultationConverter.toBean(dto.getConsultationDto()));
+            return bean;
+        }else return null;
     }
 
     public OrdonnanceDto toDto(Ordonnance bean) {
